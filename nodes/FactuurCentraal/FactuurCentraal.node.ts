@@ -1,6 +1,8 @@
 import {
+	NodeApiError,
 	NodeConnectionTypes,
 	NodeOperationError,
+	type JsonObject,
 	type IExecuteFunctions,
 	type INodeExecutionData,
 	type INodeType,
@@ -56,7 +58,9 @@ export class FactuurCentraal implements INodeType {
 					});
 					continue;
 				}
-				throw error;
+				throw error instanceof NodeApiError || error instanceof NodeOperationError
+					? error
+					: new NodeApiError(this.getNode(), error as JsonObject, { itemIndex });
 			}
 		}
 

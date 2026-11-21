@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "n8n community node for Factuur Centraal: manage invoices, clients, quotes, products, receipts and dimensions from your workflows",
   "license": "MIT",
+  "author": {
+    "name": "GetApi",
+    "email": "info@getapi.nl"
+  },
   "homepage": "https://www.factuurcentraal.nl",
   "keywords": [
     "n8n-community-node-package",
@@ -15,6 +19,7 @@
     "offerte",
     "bonnen",
     "boekhouden",
+    "online facturatie",
     "netherlands",
     "dutch"
   ],

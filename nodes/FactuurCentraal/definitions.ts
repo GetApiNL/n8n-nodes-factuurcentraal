@@ -167,7 +167,7 @@ function operationProperties(resource: Resource, operation: Operation): INodePro
 			default: 'data',
 			required: true,
 			description:
-				'The name of the binary field on the input item that holds the file to upload. Use a comma separated list to upload several files (jpg, png, pdf or heic, max 10 MB each).',
+				'The name of the binary field on the input item that holds the file to upload. Use a comma-separated list to upload several files (jpg, png, pdf or heic, max 10 MB each).',
 			displayOptions: { show },
 		});
 	}
@@ -226,6 +226,8 @@ export function buildProperties(resources: Resource[]): INodeProperties[] {
 
 	for (const resource of sortedResources) {
 		const operations = [...resource.operations].sort((a, b) => a.name.localeCompare(b.name));
+		const defaultOperation: string =
+			operations.find((o) => o.value === 'getAll')?.value ?? operations[0].value;
 		properties.push({
 			displayName: 'Operation',
 			name: 'operation',
@@ -238,7 +240,7 @@ export function buildProperties(resources: Resource[]): INodeProperties[] {
 				description: operation.description,
 				action: operation.action,
 			})),
-			default: operations.find((o) => o.value === 'getAll')?.value ?? operations[0].value,
+			default: defaultOperation,
 		});
 		for (const operation of operations) {
 			properties.push(...operationProperties(resource, operation));
